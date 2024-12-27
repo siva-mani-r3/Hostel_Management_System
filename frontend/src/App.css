@@ -1,0 +1,35 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+
+}
+.navbar{
+  background-color:turquoise;
+}
+.imageslider{
+  margin-top: 15px;
+}
+.zoom:hover {
+  -ms-transform: scale(1.5); 
+  -webkit-transform: scale(1.5); 
+  transform: scale(1.5); 
+}
+#container {
+  display: inline-block;
+
+  border: 1px solid black;
+  overflow: hidden;            
+}
+#container img {
+  display: block;
+  transition: transform .4s;  
+}
+#container:hover img {
+  transform: scale(1.1);
+  transform-origin: 50% 50%;
+}
+.card-img-top{
+  width: 100px;
+}
+

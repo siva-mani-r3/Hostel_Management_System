@@ -5,9 +5,9 @@ import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [serverError, setServerError] = useState("");
-    // const [inputError, setInputError] = useState(""); 
-    // const [loading, setLoading] = useState("");
+    const [serverError, setServerError] = useState("");
+    const [inputError, setInputError] = useState(""); 
+    const [loading, setLoading] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -28,15 +28,15 @@ const Login = () => {
                     }, 2000); 
                 } else {
                     alert("Incorrect login details");
-                    // setLoading(""); 
+                    setLoading(""); 
                 }
             })
-            // .catch(err => {
-            //     setLoading("");
-            //     if (err.response === undefined) {
-            //         setServerError("Unable to reach the server.\nPlease try again later.");
-            //     }
-            // });
+            .catch(err => {
+                setLoading("");
+                if (err.response === undefined) {
+                    setServerError("Unable to reach the server.\nPlease try again later.");
+                }
+            });
     };
 
     return (
@@ -71,13 +71,13 @@ const Login = () => {
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-3'>Login</button>
                 </form>
-{/*                 {loading && <p className="text-info mt-3 text-center">{loading}</p>}
+                {loading && <p className="text-info mt-3 text-center">{loading}</p>}
                 {inputError && <p className="text-danger mt-3 text-center">{inputError}</p>}
                 {serverError && (
                     <div className="text-danger mt-3 text-center">
                         <p>Unable to reach our servers.<br />Please try again later.</p>
                     </div>
-                )} */}
+                )}
                 <center><p className="mt-3">New user? Register below</p></center>
                 <Link to="/">
                     <button className='btn btn-default border w-100 bg-light rounded-3'>Register</button>

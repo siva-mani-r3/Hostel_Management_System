@@ -5,9 +5,9 @@ import axios from "axios";
 const WardenLogin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [serverError, setServerError] = useState("");
-    // const [inputError, setInputError] = useState(""); 
-    // const[loading,setloading]=useState("")
+    const [serverError, setServerError] = useState("");
+    const [inputError, setInputError] = useState(""); 
+    const[loading,setloading]=useState("")
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,11 +30,11 @@ const WardenLogin = () => {
                     alert("Incorrect login details");  
                 }
             })
-            // .catch(err => {
-            //     if (err.response === undefined) {
-            //         setServerError("Unable to reach the server.\nPlease try again later.");
-            //     }
-            // });
+            .catch(err => {
+                if (err.response === undefined) {
+                    setServerError("Unable to reach the server.\nPlease try again later.");
+                }
+            });
     };
 
     return (
@@ -69,13 +69,13 @@ const WardenLogin = () => {
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-3'>Login</button>
                 </form>
-{/* 
+
                 {loading && <p className="text-info mt-3 text-center">{loading}</p>}
                 {inputError && <p className="text-danger mt-3"><center>{inputError}</center></p>}
 
                 {serverError && (
     <div className="text-danger mt-3">
-        <p>Unable to reach our servers. <br/>Please try again later.</p> */}
+        <p>Unable to reach our servers. <br/>Please try again later.</p>
        
     </div>
 )}

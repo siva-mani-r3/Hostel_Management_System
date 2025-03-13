@@ -15,7 +15,7 @@ const WardenLogin = () => {
             setInputError("Please fill input fields");
             return;
         }
-        axios.post('https:wardenlogin', { email, password })
+        axios.post('https://hms-api-six.vercel.app/wardenlogin', { email, password })
             .then(result => {
                 if (result.data === "success") {
                     localStorage.setItem('user', email);

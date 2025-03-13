@@ -5,9 +5,9 @@ import axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [serverError, setServerError] = useState("");
-    const [inputError, setInputError] = useState(""); 
-    const [loading, setLoading] = useState("");
+    // const [serverError, setServerError] = useState("");
+    // const [inputError, setInputError] = useState(""); 
+    // const [loading, setLoading] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {

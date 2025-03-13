@@ -15,7 +15,7 @@ const WardenLogin = () => {
             setInputError("Please fill input fields");
             return;
         }
-        axios.post('https://hms-api-six.vercel.app/wardenlogin' , { email, password })
+        axios.post('https:wardenlogin', { email, password })
             .then(result => {
                 if (result.data === "success") {
                     localStorage.setItem('user', email);
@@ -38,9 +38,29 @@ const WardenLogin = () => {
                     <img src='2.png' className='img-fluid' style={{ height: "60px", width: "100px" }} alt="Logo" />
                 </center>
                 <center><h2 style={{ textShadow: "2px 2px 4px turquoise", fontFamily: "sans-serif" }}>Warden Login</h2></center>
+                
+                <form onSubmit={handleSubmit}>
+                    <input 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="Email" 
+                        className="form-control my-2"
+                    />
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        placeholder="Password" 
+                        className="form-control my-2"
+                    />
+                    <button type="submit" className='btn btn-primary w-100'>Login</button>
+                </form>
 
                 {inputError && <p className="text-danger mt-3 text-center">{inputError}</p>}
+                
                 <center><p className="mt-3">New user? Register below</p></center>
+                
                 <Link to="/wardenregister">
                     <button className='btn btn-default border w-100 bg-light rounded-3'>Register</button>
                 </Link>
@@ -48,4 +68,5 @@ const WardenLogin = () => {
         </div>
     );
 };
+
 export default WardenLogin;

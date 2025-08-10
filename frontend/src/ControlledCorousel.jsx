@@ -42,7 +42,7 @@ function ControlledCarousel() {
           <marquee ><h4 style={{ "fontFamily": "sans-serif", 
   "color": "black",
   "text-shadow": "2px 2px 4px turquoise"
- }}>Designed By Sivamani</h4></marquee>
+ }}>Designed By Kousalya</h4></marquee>
         </div>
       </div>
     </div>

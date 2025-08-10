@@ -7,6 +7,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [serverError, setServerError] = useState("");
     const [inputError, setInputError] = useState(""); 
+    const [loading, setLoading] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -17,16 +18,21 @@ const Login = () => {
             setInputError("Please fill input fields");
             return;
         }
+        setLoading("Loading please wait......");
         axios.post('http://localhost:3002/login', { email, password })
             .then(result => {
                 if (result.data === "success") {
-                    localStorage.setItem('user', email);  // Store email (or username) in localStorage
-                    navigate('/$2a$12$GUbLTBEOUWUg4FSgaPJSousyzQZkyiRr2dmmVt4OwXmDUbCzh9v23'); 
+                    localStorage.setItem('user', email);
+                    setTimeout(() => {
+                        navigate('/$2a$12$GUbLTBEOUWUg4FSgaPJSousyzQZkyiRr2dmmVt4OwXmDUbCzh9v23');
+                    }, 2000); 
                 } else {
-                    alert("Incorrect login details");  
+                    alert("Incorrect login details");
+                    setLoading(""); 
                 }
             })
             .catch(err => {
+                setLoading("");
                 if (err.response === undefined) {
                     setServerError("Unable to reach the server.\nPlease try again later.");
                 }
@@ -39,7 +45,7 @@ const Login = () => {
                 <center>
                     <img src='2.png' className='img-fluid' style={{ height: "60px", width: "100px" }} alt="Logo" />
                 </center>
-                <center><h2 style={{ textShadow: "2px 2px 4px turquoise", fontFamily: "san serif" }}>Student Login</h2></center>
+                <center><h2 style={{ textShadow: "2px 2px 4px turquoise", fontFamily: "sans-serif" }}>Student Login</h2></center>
                 <form onSubmit={handleSubmit}>
                     <div className='mb-3'>
                         <label htmlFor='email'><strong>Email</strong></label>
@@ -65,21 +71,19 @@ const Login = () => {
                     </div>
                     <button type='submit' className='btn btn-success w-100 rounded-3'>Login</button>
                 </form>
-                
-                {inputError && <p className="text-danger mt-3"><center>{inputError}</center></p>}
+                {loading && <p className="text-info mt-3 text-center">{loading}</p>}
+                {inputError && <p className="text-danger mt-3 text-center">{inputError}</p>}
                 {serverError && (
-                    <div className="text-danger mt-3">
-                        <p>Unable to reach our servers. <br/>Please try again later.</p>
+                    <div className="text-danger mt-3 text-center">
+                        <p>Unable to reach our servers.<br />Please try again later.</p>
                     </div>
                 )}
-
-                <center><p className="mt-3">New user? Register below</p></center>     
+                <center><p className="mt-3">New user? Register below</p></center>
                 <Link to="/">
                     <button className='btn btn-default border w-100 bg-light rounded-3'>Register</button>
                 </Link>
             </div>
         </div>
     );
-}
-
+};
 export default Login;

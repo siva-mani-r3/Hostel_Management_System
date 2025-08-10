@@ -7,6 +7,7 @@ const WardenLogin = () => {
     const [password, setPassword] = useState("");
     const [serverError, setServerError] = useState("");
     const [inputError, setInputError] = useState(""); 
+    const[loading,setloading]=useState("")
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,11 +17,15 @@ const WardenLogin = () => {
             setInputError("Please fill input fields");
             return;
         }
+        setloading("Loading please wait.....")
         axios.post('http://localhost:3002/wardenlogin', { email, password })
             .then(result => {
                 if (result.data === "success") {
                     localStorage.setItem('user', email); 
-                    navigate('/$2a$12$GUbLTBEOUWUg4FSgaPJSousyzQZkyiRr2dmmVt4OwXmDUbCzh9v22'); 
+                    setTimeout(()=>{
+                        navigate('/$2a$12$GUbLTBEOUWUg4FSgaPJSousyzQZkyiRr2dmmVt4OwXmDUbCzh9v22'); 
+                    },2000);
+                    
                 } else {
                     alert("Incorrect login details");  
                 }
@@ -65,7 +70,7 @@ const WardenLogin = () => {
                     <button type='submit' className='btn btn-success w-100 rounded-3'>Login</button>
                 </form>
 
-            
+                {loading && <p className="text-info mt-3 text-center">{loading}</p>}
                 {inputError && <p className="text-danger mt-3"><center>{inputError}</center></p>}
 
                 {serverError && (
